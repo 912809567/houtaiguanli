@@ -5,7 +5,7 @@ export default {
     const { username, password } = JSON.parse(config.body)
     // 先判断用户是否存在
     // 判断账号和密码是否对应
-    if (username === 'admin' && password === 'admin') {
+    if (username === 'foaix' && password === 'foaix') {
       return {
         code: 20000,
         data: {
@@ -56,7 +56,7 @@ export default {
           message: '获取成功'
         }
       }
-    } else if (username === 'xiaoxiao' && password === 'xiaoxiao') {
+    } else if (username === 'abcd' && password === '123') {
       return {
         code: 20000,
         data: {

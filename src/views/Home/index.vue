@@ -10,7 +10,9 @@
           </div>
         </div>
         <div class="login-info">
-          <p>上次登录时间：<span>2022-9-4</span></p>
+          <p>
+            上次登录时间：<span>{{ currentdate }}</span>
+          </p>
           <p>上次登录地点：<span>茂名</span></p>
         </div>
       </el-card>
@@ -112,8 +114,10 @@ export default {
           color: "#5ab1ef",
         },
       ],
+      currentdate: null,
     };
   },
+  methods: {},
   mounted() {
     getData().then((res) => {
       const { code, data } = res.data;
@@ -223,6 +227,20 @@ export default {
         V.setOption(videoOption);
       }
     });
+
+    let date = new Date();
+    let year = date.getFullYear(); //获取完整的年份(4位)
+    let month = date.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+    let strDate = date.getDate(); // 获取当前日(1-31)
+    let week = "星期" + "日一二三四五六".charAt(date.getDay()); //获取当前星期几(0 ~ 6,0代表星期天)
+    let hour = date.getHours(); //获取当前小时(0 ~ 23)
+    let minute = date.getMinutes(); //获取当前分钟(0 ~ 59)
+
+    if (month >= 1 && month <= 9) month = "0" + month; // 如果月份是个位数，在前面补0
+    if (strDate >= 0 && strDate <= 9) strDate = "0" + strDate; // 如果日是个位数，在前面补0
+    if (minute >= 0 && minute <= 9) minute = "0" + minute; // 如果分是个位数，在前面补0
+
+    this.currentdate = `${year} 年 ${month} 月 ${strDate} 日 ${week} ${hour} : ${minute}`;
   },
 };
 </script>
